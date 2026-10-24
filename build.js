@@ -1,0 +1,10 @@
+const fs=require('node:fs');
+const path=require('node:path');
+const root=__dirname;
+for(const f of ['index.html','styles.css','app.js','server.js'])if(!fs.existsSync(path.join(root,f)))throw new Error(`Required file missing: ${f}`);
+const cp=require('node:child_process');
+cp.execFileSync(process.execPath,['--check',path.join(root,'app.js')],{stdio:'inherit'});
+cp.execFileSync(process.execPath,['--check',path.join(root,'server.js')],{stdio:'inherit'});
+const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
+if(!html.includes('styles.css')||!html.includes('app.js'))throw new Error('HTML asset references are incomplete');
+console.log('BioFeud static build check passed.');

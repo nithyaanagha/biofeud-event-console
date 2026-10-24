@@ -1,0 +1,10 @@
+{
+  "name": "biofeud-event-console",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Offline-capable BioFeud live event website",
+  "scripts": {
+    "start": "node server.js",
+    "build": "node build.js"
+  }
+}
